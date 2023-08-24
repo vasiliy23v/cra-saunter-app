@@ -84,11 +84,10 @@ export const PathMap: React.FC<PathMapProps> = ({
 
 	const handleAddMarkerToDB = async (coords: google.maps.LatLngLiteral) => {
 		try {
-			// Обновляем координаты в базе данных
-			const pathId = selectedPathId; // Замените на реальный ID пути
+			const pathId = selectedPathId;
 			const pathRef = doc(db, "paths", pathId);
 			await updateDoc(pathRef, {
-				coords: [...selectedPathCoords, coords], // Добавляем новые координаты
+				coords: [...selectedPathCoords, coords],
 			});
 
 			console.log("Marker added to database:", coords);
@@ -107,8 +106,8 @@ export const PathMap: React.FC<PathMapProps> = ({
 								directions={directions}
 								options={{
 									polylineOptions: {
-										strokeColor: "blue", // Настройка цвета полилинии
-										strokeWeight: 4, // Толщина полилинии
+										strokeColor: "orange",
+										strokeWeight: 4,
 									},
 								}}
 							/>

@@ -16,7 +16,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 interface AddPathFormProps {
 	onAddPath: (newId: string) => void;
 	onClose: () => void;
-	isOpen: boolean; // Add this line to include the isOpen prop
+	isOpen: boolean;
 }
 
 export const AddPathForm: React.FC<AddPathFormProps> = ({
@@ -25,8 +25,8 @@ export const AddPathForm: React.FC<AddPathFormProps> = ({
 	isOpen,
 }) => {
 	const [newPath, setNewPath] = useState<Path>({
-		id: "", // Генерировать id можно в функции добавления в Firebase
-		coords: [], // Маркеры добавляются на карту, их можно получить после сохранения в Firebase
+		id: "", 
+		coords: [], 
 		description: "",
 		favorite: false,
 		length: 0,
@@ -55,12 +55,10 @@ export const AddPathForm: React.FC<AddPathFormProps> = ({
 
 	const handleAddPath = async () => {
 		try {
-			// Добавляем путь в Firebase
 			const newId = generateUniqueId();
 			const pathsCollection = collection(db, "paths");
 			await addDoc(pathsCollection, newPath);
 
-			// Сбрасываем состояние формы и вызываем функцию обновления списка путей
 			setNewPath({
 				id: newId,
 				coords: [],
@@ -71,7 +69,7 @@ export const AddPathForm: React.FC<AddPathFormProps> = ({
 				image: "",
 			});
 			onAddPath(newId);
-			onClose(); // Закрыть модальное окно после добавления пути
+			onClose(); 
 		} catch (error) {
 			console.error("Error adding path:", error);
 		}

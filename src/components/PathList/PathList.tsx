@@ -12,7 +12,7 @@ import {
 	Toolbar,
 	Typography,
 } from "@mui/material";
-import { AddPathForm, PathMap, PathInfo } from ".."; // Make sure to import all required components
+import { AddPathForm, PathMap, PathInfo } from ".."; 
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { Path, PathCords } from "../../interfaces";
@@ -36,7 +36,7 @@ export function PathList({
 	onPathSelected,
 	onOpenAddPathModal,
 }: PathListProps) {
-	const [paths, setPaths] = useState<Path[]>([]); // Change the type from Path[] | [] to Path[]
+	const [paths, setPaths] = useState<Path[]>([]); 
 	const [searchTerm, setSearchTerm] = useState("");
 	const [selectedPath, setSelectedPath] = useState<Path | null>(null);
 	const [selectedPathCoords, setSelectedPathCoords] = useState<
@@ -100,11 +100,6 @@ export function PathList({
 				path.description.toLowerCase().includes(searchTerm.toLowerCase())
 		)
 		.sort((a, b) => (b.favorite ? 1 : -1));
-	const [imageError, setImageError] = useState(false);
-
-	const handleImageError = () => {
-		setImageError(true);
-	};
 	return (
 		<>
 			<AppBar position="static">
